@@ -12,7 +12,7 @@ const CalendarComponent = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/events');
+        const response = await axios.get('https://famous-jade-vest.cyclic.app/events');
         const calendarEvents = response.data.map(event => ({
           title: event.title,
           start: new Date(event.date + ' ' + event.time),
@@ -33,8 +33,7 @@ const CalendarComponent = () => {
     if (title) {
       const newEvent = { start, end, title };
       setEvents([...events, newEvent]);
-      // Save to backend
-      axios.post('http://localhost:8080/events', {
+      axios.post('https://famous-jade-vest.cyclic.app/events', {
         title,
         date: moment(start).format('DD-MM-YYYY'),
         time: moment(start).format('hh:mm A'),
